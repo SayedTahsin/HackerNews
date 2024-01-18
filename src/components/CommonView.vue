@@ -2,6 +2,7 @@
 import Content from "./contentCard.vue";
 import axios from "axios";
 import { ref, computed, watchEffect } from "vue";
+import fallbackLoading from "./fallbackLoading.vue";
 
 const props = defineProps(["url"]);
 
@@ -48,7 +49,9 @@ watchEffect(() => {
       <template #default>
         <Content :id="id" />
       </template>
-      <template #fallback>Loading...</template>
+      <template #fallback>
+        <fallbackLoading />
+      </template>
     </Suspense>
   </template>
 

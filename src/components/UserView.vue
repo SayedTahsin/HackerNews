@@ -20,7 +20,8 @@ function dhm(t) {
     h = 0;
   }
   if (d != 0) return `created ${d} days ago`;
-  else return `created ${h} hours ago`;
+  else if (h != 0) return `created ${h} hours ago`;
+  else return `created ${m} minutes ago`;
 }
 const time = dhm(response.data.created);
 </script>

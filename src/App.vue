@@ -1,12 +1,16 @@
 <script setup>
 import { RouterView } from "vue-router";
 import Navbar from "./components/Nav.vue";
+import fallbackLoading from "./components/fallbackLoading.vue";
 </script>
 
 <template>
   <Navbar />
   <Suspense>
-    <RouterView />
+    <template #default>
+      <RouterView />
+    </template>
+    <template #fallback> <fallbackLoading /></template>
   </Suspense>
 </template>
 

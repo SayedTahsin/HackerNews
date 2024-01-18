@@ -41,7 +41,7 @@ if (response.data.kids) {
   <div class="comment">
     <div class="head">
       <span @click="router.push(`/user/${username}`)">{{ username }}</span> |
-      {{ time }} | {{ numberOfComments }}
+      {{ time }} | {{ numberOfComments }} comments
     </div>
     <hr />
     <div>{{ response.data.text }}</div>

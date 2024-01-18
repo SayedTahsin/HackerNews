@@ -20,7 +20,7 @@ import { RouterLink } from "vue-router";
 <style scoped>
 .navbar {
   height: 50px;
-  background-color: orange;
+  background-color: rgb(243, 89, 0);
   margin: auto;
   width: 100%;
   padding: 10px;
