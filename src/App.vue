@@ -15,7 +15,6 @@ import Footer from "./components/footer.vue";
       <template #fallback> <fallbackLoading /></template>
     </Suspense>
   </div>
-  <Footer />
 </template>
 
 <style scoped>

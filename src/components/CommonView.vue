@@ -3,7 +3,7 @@ import Content from "./contentCard.vue";
 import axios from "axios";
 import { ref, computed, watchEffect } from "vue";
 import fallbackLoading from "./fallbackLoading.vue";
-
+import Footer from "./footer.vue";
 const props = defineProps(["url"]);
 
 let stories = ref([]);
@@ -68,6 +68,7 @@ watchEffect(() => {
       &gt
     </button>
   </div>
+  <Footer />
 </template>
 
 <style scoped>

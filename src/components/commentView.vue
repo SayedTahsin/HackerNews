@@ -3,7 +3,7 @@ import { useRoute } from "vue-router";
 import Content from "./contentCard.vue";
 import commentCard from "./commentCard.vue";
 import fallbackLoading from "./fallbackLoading.vue";
-
+import Footer from "./footer.vue";
 import axios from "axios";
 import { ref } from "vue";
 
@@ -42,6 +42,7 @@ fetchData();
       </Suspense>
     </template>
   </div>
+  <Footer />
 </template>
 
 <style scoped>
