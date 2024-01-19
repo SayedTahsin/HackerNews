@@ -2,6 +2,7 @@
 import { RouterView } from "vue-router";
 import Navbar from "./components/Nav.vue";
 import fallbackLoading from "./components/fallbackLoading.vue";
+import Footer from "./components/footer.vue";
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import fallbackLoading from "./components/fallbackLoading.vue";
       <template #fallback> <fallbackLoading /></template>
     </Suspense>
   </div>
+  <Footer />
 </template>
 
 <style scoped>

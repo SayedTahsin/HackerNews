@@ -15,6 +15,7 @@ const username = response.data.by;
 const score = response.data.score;
 const title = response.data.title;
 const numberOfComments = response.data.descendants;
+const isJob = response.data.type === "job";
 </script>
 
 <template>
@@ -36,12 +37,15 @@ const numberOfComments = response.data.descendants;
         @click="router.push(`/user/${username}`)"
         >{{ username }}</span
       >
-      |
-      <RouterLink
-        class="no-underline underline-on-hover"
-        :to="`/news/${props.id}/details`"
-        >{{ numberOfComments }} comments</RouterLink
-      >
+
+      <span v-if="!isJob">
+        |
+        <RouterLink
+          class="no-underline underline-on-hover"
+          :to="`/news/${props.id}/details`"
+          >{{ numberOfComments }} comments</RouterLink
+        >
+      </span>
       | <span>{{ time }}</span>
     </div>
   </div>
