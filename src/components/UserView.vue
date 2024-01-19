@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useRoute } from "vue-router";
 import {dhm} from "../commonFunction.js";
+import FallbackLoading from "./fallbackLoading.vue";
 
 const route = useRoute();
 const response = await axios.get(
@@ -14,6 +15,8 @@ const karma = response.data.karma;
 const about = response.data.about;
 </script>
 <template>
+  <Suspense>
+    <template #default>
   <div class="profile">
     <p>Username : {{ username }}</p>
     <p>Karma: {{ karma }}</p>
@@ -22,6 +25,11 @@ const about = response.data.about;
       About: <div class="about">{{ about }}</div>
     </p>
   </div>
+</template>
+<template #fallback>
+  <FallbackLoading/>
+</template>
+</Suspense>
 </template>
 
 <style scoped>
