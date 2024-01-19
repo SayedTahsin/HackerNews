@@ -2,6 +2,8 @@
 import { useRoute } from "vue-router";
 import Content from "./contentCard.vue";
 import commentCard from "./commentCard.vue";
+import fallbackLoading from "./fallbackLoading.vue";
+
 import axios from "axios";
 import { ref } from "vue";
 
@@ -27,17 +29,24 @@ fetchData();
     <template #default>
       <Content :id="id" />
     </template>
-    <template #fallback>Loading...</template>
+    <template #fallback><fallbackLoading /></template>
   </Suspense>
-
-  <template v-for="id in commentIds">
-    <Suspense>
-      <template #default>
-        <commentCard :id="id" />
-      </template>
-      <template #fallback> Loading... </template>
-    </Suspense>
-  </template>
+  <br />
+  <div class="comments">
+    <template v-for="id in commentIds">
+      <Suspense>
+        <template #default>
+          <commentCard :id="id" />
+        </template>
+        <template #fallback> <fallbackLoading /></template>
+      </Suspense>
+    </template>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.comments {
+  margin-left: 450px;
+  margin-right: 450px;
+}
+</style>

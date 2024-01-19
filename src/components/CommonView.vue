@@ -56,9 +56,17 @@ watchEffect(() => {
   </template>
 
   <div class="button">
-    <button @click="prevPage">&lt</button>
-    <button @click="nextPage">&gt</button>
-    <p>{{ currentPage }} / {{ totalPages }}</p>
+    <button :disabled="currentPage == 1" @click="prevPage" class="prev-next">
+      &lt
+    </button>
+    <span class="pages">{{ currentPage }} / {{ totalPages }}</span>
+    <button
+      :disabled="currentPage == totalPages"
+      @click="nextPage"
+      class="prev-next"
+    >
+      &gt
+    </button>
   </div>
 </template>
 
@@ -68,5 +76,22 @@ watchEffect(() => {
   width: 100%;
   text-align: center;
   padding: 10px;
+}
+.prev-next {
+  font-size: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: black;
+  cursor: pointer;
+}
+
+.pages {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 20px;
+}
+
+.underline-on-hover:hover {
+  text-decoration: underline;
 }
 </style>

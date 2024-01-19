@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-
 import UserView from "@/components/UserView.vue";
 import CommonViewVue from "@/components/CommonView.vue";
 import commentViewVue from "@/components/commentView.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

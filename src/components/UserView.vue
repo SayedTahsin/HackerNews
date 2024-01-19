@@ -1,35 +1,40 @@
 <script setup>
 import axios from "axios";
 import { useRoute } from "vue-router";
+import {dhm} from "../commonFunction.js";
+
 const route = useRoute();
 const response = await axios.get(
   `https://hacker-news.firebaseio.com/v0/user/${route.params.username}.json?print=pretty`
 );
-function dhm(t) {
-  var cd = 24 * 60 * 60 * 1000,
-    ch = 60 * 60 * 1000,
-    d = Math.floor(t / cd),
-    h = Math.floor((t - d * cd) / ch),
-    m = Math.round((t - d * cd - h * ch) / 60000);
-  if (m === 60) {
-    h++;
-    m = 0;
-  }
-  if (h === 24) {
-    d++;
-    h = 0;
-  }
-  if (d != 0) return `created ${d} days ago`;
-  else if (h != 0) return `created ${h} hours ago`;
-  else return `created ${m} minutes ago`;
-}
+
 const time = dhm(response.data.created);
+const username = response.data.id;
+const karma = response.data.karma;
+const about = response.data.about;
 </script>
 <template>
-  <p>username : {{ response.data.id }}</p>
-  <p>Karma: {{ response.data.karma }}</p>
-  <p>created: {{ time }}</p>
-  <p>About: {{ response.data.about }}</p>
+  <div class="profile">
+    <p>Username : {{ username }}</p>
+    <p>Karma: {{ karma }}</p>
+    <p>Created: {{ time }}</p>
+    <p>
+      About: <div class="about">{{ about }}</div>
+    </p>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.profile {
+  color: black;
+  margin: auto;
+  width: 50%;
+  background-color: white;
+  padding: 20px;
+  font-size: 20px;
+}
+.about {
+  border: 2px solid rgba(0, 0, 0, 0.200);
+  padding: 10px;
+}
+</style>

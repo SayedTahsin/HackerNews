@@ -6,12 +6,18 @@ import fallbackLoading from "./components/fallbackLoading.vue";
 
 <template>
   <Navbar />
-  <Suspense>
-    <template #default>
-      <RouterView />
-    </template>
-    <template #fallback> <fallbackLoading /></template>
-  </Suspense>
+  <div>
+    <Suspense>
+      <template #default>
+        <RouterView />
+      </template>
+      <template #fallback> <fallbackLoading /></template>
+    </Suspense>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+div {
+  background-color: rgb(250, 250, 250);
+}
+</style>
