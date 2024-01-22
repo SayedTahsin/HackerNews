@@ -1,79 +1,85 @@
-import { createRouter, createWebHistory } from "vue-router";
-import UserView from "@/components/UserView.vue";
-import CommonViewVue from "@/components/CommonView.vue";
-import commentViewVue from "@/components/commentView.vue";
+import CommentView from '@/View/commentView.vue'
+import CommonView from '@/View/commonView.vue'
+import NotFound from '@/View/pageNotFount.vue'
+import UserView from '@/View/userView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
-      name: "Home",
-      component: CommonViewVue,
+      path: '/',
+      name: 'Home',
+      component: CommonView,
       props: {
-        url: "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty",
-      },
+        url: 'topstories.json'
+      }
     },
     {
-      path: "/home",
-      redirect: "/",
+      path: '/home',
+      redirect: '/'
     },
     {
-      path: "/new",
-      name: "New",
-      component: CommonViewVue,
+      path: '/new',
+      name: 'New',
+      component: CommonView,
       props: {
-        url: "https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty",
-      },
+        url: 'newstories.json'
+      }
     },
     {
-      path: "/show",
-      name: "Show",
-      component: CommonViewVue,
+      path: '/show',
+      name: 'Show',
+      component: CommonView,
       props: {
-        url: "https://hacker-news.firebaseio.com/v0/showstories.json?print=pretty",
-      },
+        url: 'showstories.json'
+      }
     },
 
     {
-      path: "/best",
-      name: "best",
-      component: CommonViewVue,
+      path: '/best',
+      name: 'best',
+      component: CommonView,
       props: {
-        url: "https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty",
-      },
+        url: 'beststories.json'
+      }
     },
     {
-      path: "/ask",
-      name: "Ask",
-      component: CommonViewVue,
+      path: '/ask',
+      name: 'Ask',
+      component: CommonView,
       props: {
-        url: "https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty",
-      },
+        url: 'askstories.json'
+      }
     },
     {
-      path: "/jobs",
-      name: "Jobs",
-      component: CommonViewVue,
+      path: '/jobs',
+      name: 'Jobs',
+      component: CommonView,
       props: {
-        url: "https://hacker-news.firebaseio.com/v0/jobstories.json?print=pretty",
-      },
+        url: 'jobstories.json'
+      }
     },
     {
-      path: "/user/:username",
-      name: "Userinfo",
-      component: UserView,
+      path: '/user/:username',
+      name: 'Userinfo',
+      component: UserView
     },
     {
-      path: "/news/:id/user/:username",
-      redirect: "/user/:username",
+      path: '/news/:id/user/:username',
+      redirect: '/user/:username'
     },
     {
-      path: "/news/:id/details",
-      name: "comments",
-      component: commentViewVue,
+      path: '/news/:id/details',
+      name: 'comments',
+      component: CommentView
     },
-  ],
-});
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFound
+    }
+  ]
+})
 
-export default router;
+export default router

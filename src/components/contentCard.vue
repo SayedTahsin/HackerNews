@@ -1,21 +1,19 @@
 <script setup>
-import axios from "axios";
-import { useRouter } from "vue-router";
-import { dhm, extractDomain } from "../commonFunction.js";
+import { useAxios } from '@/composables/axios'
+import { dhm, extractDomain } from '@/utils/commonFunction'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
-const props = defineProps(["id"]);
-const response = await axios.get(
-  `https://hacker-news.firebaseio.com/v0/item/${props.id}.json?print=pretty`
-);
+const router = useRouter()
+const props = defineProps(['id'])
+const response = await useAxios(`item/${props.id}.json`)
 
-const domain = response.data.url ? extractDomain(response.data.url) : "";
-const time = dhm(response.data.time);
-const username = response.data.by;
-const score = response.data.score;
-const title = response.data.title;
-const numberOfComments = response.data.descendants;
-const isJob = response.data.type === "job";
+const domain = response.data.url ? extractDomain(response.data.url) : ''
+const time = dhm(response.data.time)
+const username = response.data.by
+const score = response.data.score
+const title = response.data.title
+const numberOfComments = response.data.descendants
+const isJob = response.data.type === 'job'
 </script>
 
 <template>
@@ -23,28 +21,15 @@ const isJob = response.data.type === "job";
     <div class="score">{{ score }}</div>
     <div class="content">
       <div class="title">
-        <a
-          class="no-underline underline-on-hover"
-          :href="response.data.url"
-          target="_blank"
-          >{{ title }}</a
-        >
+        <a class="no-underline underline-on-hover" :href="response.data.url" target="_blank">{{ title }}</a>
         <span v-if="response.data.url"> ( {{ domain }} )</span>
       </div>
       by
-      <span
-        class="underline-on-hover"
-        @click="router.push(`/user/${username}`)"
-        >{{ username }}</span
-      >
+      <span class="underline-on-hover" @click="router.push(`/user/${username}`)">{{ username }}</span>
 
       <span v-if="!isJob">
         |
-        <RouterLink
-          class="no-underline underline-on-hover"
-          :to="`/news/${props.id}/details`"
-          >{{ numberOfComments }} comments</RouterLink
-        >
+        <RouterLink class="no-underline underline-on-hover" :to="`/news/${props.id}/details`">{{ numberOfComments }} comments</RouterLink>
       </span>
       | <span>{{ time }}</span>
     </div>

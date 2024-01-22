@@ -2,9 +2,7 @@
 
 <template>
   <div class="foot">
-    <a href="https://github.com/SayedTahsin/HackerNews" target="_blank"
-      >source code</a
-    >
+    <a href="https://github.com/SayedTahsin/HackerNews" target="_blank">source code</a>
   </div>
 </template>
 

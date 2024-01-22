@@ -1,18 +1,20 @@
 <script setup>
-import axios from "axios";
+import FallbackLoading from "@/components/fallbackLoading.vue";
+import { useAxios } from "@/composables/axios";
+import { dhm } from "@/utils/commonFunction";
 import { useRoute } from "vue-router";
-import {dhm} from "../commonFunction.js";
-import FallbackLoading from "./fallbackLoading.vue";
 
-const route = useRoute();
-const response = await axios.get(
-  `https://hacker-news.firebaseio.com/v0/user/${route.params.username}.json?print=pretty`
-);
+const route = useRoute()
+const id = route.params.username;
 
-const time = dhm(response.data.created);
-const username = response.data.id;
-const karma = response.data.karma;
-const about = response.data.about;
+const response = await useAxios(`user/${id}.json`);
+
+const time = dhm(response.data.created)
+const username = response.data.id
+const karma = response.data.karma
+const about = response.data.about
+
+
 </script>
 <template>
   <Suspense>

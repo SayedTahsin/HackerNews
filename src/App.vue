@@ -1,8 +1,7 @@
 <script setup>
-import { RouterView } from "vue-router";
-import Navbar from "./components/Nav.vue";
-import fallbackLoading from "./components/fallbackLoading.vue";
-import Footer from "./components/footer.vue";
+import FallbackLoading from '@/components/fallbackLoading.vue'
+import Navbar from '@/components/navbar.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
@@ -12,7 +11,9 @@ import Footer from "./components/footer.vue";
       <template #default>
         <RouterView />
       </template>
-      <template #fallback> <fallbackLoading /></template>
+      <template #fallback>
+        <FallbackLoading />
+      </template>
     </Suspense>
   </div>
 </template>
@@ -22,3 +23,8 @@ div {
   background-color: rgb(250, 250, 250);
 }
 </style>
+
+<!-- 
+Changes Needed in Your Final Project
+- Use a composable called useAxios and use that axios
+-->

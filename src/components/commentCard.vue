@@ -1,46 +1,40 @@
 <script setup>
-import axios from "axios";
-import { useRouter } from "vue-router";
-import { computed, ref } from "vue";
-import FallbackLoading from "./fallbackLoading.vue";
-import { dhm } from "../commonFunction.js";
-const router = useRouter();
-const props = defineProps(["id"]);
+import FallbackLoading from '@/components/fallbackLoading.vue'
+import { useAxios } from '@/composables/axios'
+import { dhm } from '@/utils/commonFunction'
+import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const response = await axios.get(
-  `https://hacker-news.firebaseio.com/v0/item/${props.id}.json?print=pretty`
-);
+const router = useRouter()
+const props = defineProps(['id'])
 
-let showReply = ref(false);
+const response = await useAxios(`item/${props.id}.json`)
+let showReply = ref(false)
 const toggle = () => {
-  showReply.value = !showReply.value;
-};
+  showReply.value = !showReply.value
+}
 
-const time = dhm(response.data.time);
-const username = response.data.by;
-const text = response.data.text;
-let comments = response.data.kids ? response.data.kids : [];
-let numberOfComments = response.data.kids ? response.data.kids.length : 0;
+const time = dhm(response.data.time)
+const username = response.data.by
+const text = response.data.text
+
+let comments = response.data.kids ? response.data.kids : []
+let numberOfComments = response.data.kids ? response.data.kids.length : 0
+
 let buttonText = computed(() => {
-  return showReply.value === false
-    ? "Show reply " + numberOfComments + " [+]"
-    : "Hide reply " + "[-]";
-});
+  return showReply.value === false ? 'Show reply ' + numberOfComments + ' [+]' : 'Hide reply ' + '[-]'
+})
 </script>
 
 <template>
   <div class="comment">
     <div class="head">
-      <span class="changeCursor" @click="router.push(`/user/${username}`)">{{
-        username
-      }}</span>
+      <span class="changeCursor" @click="router.push(`/user/${username}`)">{{ username }}</span>
       | {{ time }} | {{ numberOfComments }} comments
     </div>
     <hr />
     <div>{{ text }}</div>
-    <span class="btn changeCursor" v-if="numberOfComments" @click="toggle">{{
-      buttonText
-    }}</span>
+    <span class="btn changeCursor" v-if="numberOfComments" @click="toggle">{{ buttonText }}</span>
     <div class="subcomment" v-if="numberOfComments && showReply">
       <template v-for="id in comments">
         <Suspense>

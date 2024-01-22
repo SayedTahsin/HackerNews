@@ -9,10 +9,11 @@ div {
   margin: auto;
   width: 50%;
   padding: 10px;
-  background-color: rgb(240, 240, 240);
+  background-color: rgba(240, 240, 240, 0.5);
   margin-bottom: 5px;
   border-radius: 10px;
   justify-content: center;
   align-content: center;
+  color: rgba(0, 0, 0, 0.5);
 }
 </style>
