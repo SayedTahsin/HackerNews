@@ -2,7 +2,7 @@
 import CommentCard from '@/components/commentCard.vue'
 import ContentCard from '@/components/contentCard.vue'
 import FallbackLoading from '@/components/fallbackLoading.vue'
-import Footer from '@/components/footer.vue'
+import FallbackLoadingComment from '@/components/fallbackLoadingComment.vue'
 import { useAxios } from '@/composables/axios'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -30,22 +30,14 @@ fetchData()
     <template #fallback><FallbackLoading /></template>
   </Suspense>
   <br />
-  <div class="comments">
+  <div class="mx-auto max-w-5xl">
     <template v-for="id in commentIds">
       <Suspense>
         <template #default>
           <CommentCard :id="id" />
         </template>
-        <template #fallback> <FallbackLoading /></template>
+        <template #fallback> <FallbackLoadingComment /></template>
       </Suspense>
     </template>
   </div>
-  <Footer />
 </template>
-
-<style scoped>
-.comments {
-  margin-left: 450px;
-  margin-right: 450px;
-}
-</style>

@@ -1,5 +1,5 @@
 <script setup>
-import FallbackLoading from '@/components/fallbackLoading.vue'
+import FallbackLoadingComment from './fallbackLoadingComment.vue'
 import { useAxios } from '@/composables/axios'
 import { dhm } from '@/utils/commonFunction'
 import { computed, ref } from 'vue'
@@ -27,14 +27,14 @@ let buttonText = computed(() => {
 </script>
 
 <template>
-  <div class="comment">
-    <div class="head">
-      <span class="changeCursor" @click="router.push(`/user/${username}`)">{{ username }}</span>
+  <div class="px-3 bg-gray-100 rounded-lg">
+    <div class="text-black">
+      <span class="cursor-pointer text-blue-700 font-bold" @click="router.push(`/user/${username}`)">{{ username }}</span>
       | {{ time }} | {{ numberOfComments }} comments
     </div>
     <hr />
     <div>{{ text }}</div>
-    <span class="btn changeCursor" v-if="numberOfComments" @click="toggle">{{ buttonText }}</span>
+    <span class="text-black font-bold text-xs cursor-pointer" v-if="numberOfComments" @click="toggle">{{ buttonText }}</span>
     <div class="subcomment" v-if="numberOfComments && showReply">
       <template v-for="id in comments">
         <Suspense>
@@ -42,36 +42,10 @@ let buttonText = computed(() => {
             <commentCard :id="id" />
           </template>
           <template #fallback>
-            <FallbackLoading />
+            <FallbackLoadingComment />
           </template>
         </Suspense>
       </template>
     </div>
   </div>
 </template>
-
-<style scoped>
-.comment {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 2px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: rgb(245, 245, 245);
-  border-radius: 10px;
-}
-.head {
-  color: black;
-}
-.head span {
-  color: rgb(255, 115, 0);
-}
-.btn {
-  color: black;
-  font-weight: bold;
-  font-size: 12px;
-}
-.changeCursor {
-  cursor: pointer;
-}
-</style>

@@ -7,23 +7,11 @@ const gotoHome = () => {
 </script>
 
 <template>
+  <div class="mx-auto text-center text-4xl flex flex-col justify-center items-center" >
+  <p class="text-6xl font-bold">404</p>
   <div>
-    <p class="four">404</p>
-    <p>Page Not Found</p>
-    <button @click="gotoHome">Back to Home</button>
+    <p class="mb-2">Page Not Found</p>
+    <button @click="gotoHome" class="hover:bg-gray-200 hover:text-gray-800 hover:border-gray-400 px-4 py-2 rounded-md border border-gray-300" >Back to Home</button>
   </div>
+</div>
 </template>
-
-<style scoped>
-div {
-  margin: auto;
-  text-align: center;
-  font-size: 50px;
-  justify-content: center;
-  align-items: center;
-}
-.four {
-  font-size: 100px;
-  font-weight: bold;
-}
-</style>

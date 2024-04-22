@@ -1,7 +1,6 @@
 <script setup>
 import ContentCard from '@/components/contentCard.vue'
 import FallbackLoading from '@/components/fallbackLoading.vue'
-import Footer from '@/components/footer.vue'
 import { useAxios } from '@/composables/axios'
 import { computed, ref, watchEffect } from 'vue'
 
@@ -56,36 +55,9 @@ watchEffect(() => {
     </Suspense>
   </template>
 
-  <div class="button">
-    <button :disabled="currentPage == 1" @click="prevPage" class="prev-next">&lt</button>
-    <span class="pages">{{ currentPage }} / {{ totalPages }}</span>
-    <button :disabled="currentPage == totalPages" @click="nextPage" class="prev-next">&gt</button>
+  <div class="mx-auto w-full text-center px-4 py-2">
+    <button :disabled="currentPage == 1" @click="prevPage" class="text-black text-lg px-4 cursor-pointer">&lt</button>
+    <span class="px-4 text-lg">{{ currentPage }} / {{ totalPages }}</span>
+    <button :disabled="currentPage == totalPages" @click="nextPage" class="text-black text-lg px-4 cursor-pointer">&gt</button>
   </div>
-  <Footer />
 </template>
-
-<style scoped>
-.button {
-  margin: auto;
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-}
-.prev-next {
-  font-size: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  color: black;
-  cursor: pointer;
-}
-
-.pages {
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 20px;
-}
-
-.underline-on-hover:hover {
-  text-decoration: underline;
-}
-</style>

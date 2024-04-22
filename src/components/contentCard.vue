@@ -17,62 +17,20 @@ const isJob = response.data.type === 'job'
 </script>
 
 <template>
-  <div class="cardDiv">
-    <div class="score">{{ score }}</div>
-    <div class="content">
-      <div class="title">
-        <a class="no-underline underline-on-hover" :href="response.data.url" target="_blank">{{ title }}</a>
-        <span v-if="response.data.url"> ( {{ domain }} )</span>
+  <div class="mx-auto w-3/5 p-4 flex bg-gray-100 m-2 rounded-lg">
+    <div class="w-12 h-12 text-lg font-bold flex items-center justify-center border border-gray-200 rounded-lg text-orange-500">{{ score }}</div>
+    <div class="pl-5 ml-5">
+      <div class="text-lg">
+        <a class="text-black font-bold hover:text-black hover:underline" :href="response.data.url" target="_blank">{{ title }}</a>
+        <span v-if="response.data.url" class="text-sm"> ( {{ domain }} )</span>
       </div>
       by
-      <span class="underline-on-hover" @click="router.push(`/user/${username}`)">{{ username }}</span>
-
+      <span class="cursor-pointer text-blue-700 font-bold" @click="router.push(`/user/${username}`)">{{ username }}</span>
       <span v-if="!isJob">
         |
-        <RouterLink class="no-underline underline-on-hover" :to="`/news/${props.id}/details`">{{ numberOfComments }} comments</RouterLink>
+        <RouterLink class="text-black hover:text-black hover:underline" :to="`/news/${props.id}/details`">{{ numberOfComments }} comments</RouterLink>
       </span>
       | <span>{{ time }}</span>
     </div>
   </div>
 </template>
-
-<style scoped>
-.cardDiv {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-  display: flex;
-  background-color: rgb(240, 240, 240);
-  margin-bottom: 3px;
-  border-radius: 10px;
-}
-.content {
-  padding-left: 20px;
-  margin-left: 20px;
-}
-.score {
-  width: 50px;
-  font-size: larger;
-  color: rgb(255, 115, 0);
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgb(200, 200, 200);
-  border-radius: 10px;
-}
-.title {
-  font-size: large;
-}
-.title > span {
-  font-size: small;
-}
-.no-underline {
-  color: black;
-  text-decoration: none;
-}
-.underline-on-hover:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-</style>

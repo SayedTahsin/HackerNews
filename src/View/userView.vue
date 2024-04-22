@@ -1,5 +1,5 @@
 <script setup>
-import FallbackLoading from "@/components/fallbackLoading.vue";
+import fallbackLoadingUser from "@/components/fallbackLoadingUser.vue";
 import { useAxios } from "@/composables/axios";
 import { dhm } from "@/utils/commonFunction";
 import { useRoute } from "vue-router";
@@ -19,32 +19,18 @@ const about = response.data.about
 <template>
   <Suspense>
     <template #default>
-  <div class="profile">
-    <p>Username : {{ username }}</p>
-    <p>Karma: {{ karma }}</p>
-    <p>Created: {{ time }}</p>
-    <p>
-      About: <div class="about">{{ about }}</div>
-    </p>
-  </div>
+      <div class="text-black mx-auto w-3/5 bg-white p-5 text-lg">
+        <p>Username : {{ username }}</p>
+        <p>Karma: {{ karma }}</p>
+        <p>Created: {{ time }}</p>
+        <p>
+          About:
+        <div class="border border-black border-opacity-25 p-4">{{ about }}</div>
+        </p>
+      </div>
+    </template>
+    <template #fallback>
+      <fallbackLoadingUser />
+    </template>
+  </Suspense>
 </template>
-<template #fallback>
-  <FallbackLoading/>
-</template>
-</Suspense>
-</template>
-
-<style scoped>
-.profile {
-  color: black;
-  margin: auto;
-  width: 50%;
-  background-color: white;
-  padding: 20px;
-  font-size: 20px;
-}
-.about {
-  border: 2px solid rgba(0, 0, 0, 0.200);
-  padding: 10px;
-}
-</style>

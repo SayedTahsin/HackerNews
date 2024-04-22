@@ -1,12 +1,14 @@
 <script setup>
 import FallbackLoading from '@/components/fallbackLoading.vue'
 import Navbar from '@/components/navbar.vue'
+import Footer from '@/components/footer.vue'
 import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <Navbar />
-  <div>
+  <div class="flex flex-col min-h-screen">
+  <Navbar class="sticky top-0 z-50"/>
+  <div class="flex-grow">
     <Suspense>
       <template #default>
         <RouterView />
@@ -16,15 +18,7 @@ import { RouterView } from 'vue-router'
       </template>
     </Suspense>
   </div>
+  <Footer class="mt-auto"/>
+</div>
+  
 </template>
-
-<style scoped>
-div {
-  background-color: rgb(250, 250, 250);
-}
-</style>
-
-<!-- 
-Changes Needed in Your Final Project
-- Use a composable called useAxios and use that axios
--->

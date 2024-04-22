@@ -27,47 +27,10 @@ const routes = [
 </script>
 
 <template>
-  <div class="navbar">
-    <RouterLink class="no-underline box" active-class="active" to="/"><span>HackerNews</span></RouterLink>
-    <div class="newBest">
-      <RouterLink v-for="route in routes" class="no-underline box" active-class="active" :to="route.to">{{ route.title }}</RouterLink>
+  <div class="h-16 bg-orange-700 flex justify-between items-center text-white px-96">
+    <RouterLink class="no-underline font-bold text-xl" active-class="font-bold text-3xl" to="/"><span>HackerNews</span></RouterLink>
+    <div class="flex justify-between space-x-4">
+      <RouterLink v-for="route in routes" class="no-underline" active-class="font-bold underline" :to="route.to">{{ route.title }}</RouterLink>
     </div>
   </div>
 </template>
-
-<style scoped>
-.no-underline {
-  color: white;
-  text-decoration: none;
-  font-size: large;
-}
-
-.active {
-  font-weight: bold;
-  font-size: large;
-  text-decoration: underline;
-}
-.navbar {
-  height: 70px;
-  background-color: rgb(216, 79, 0);
-  width: 100%;
-  padding-top: 1%;
-  padding-left: 25%;
-  padding-right: 25%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.newBest {
-  display: flex;
-  justify-content: space-between;
-}
-.box {
-  padding-left: 6px;
-}
-
-span {
-  font-size: 25px;
-  font-weight: bold;
-}
-</style>
