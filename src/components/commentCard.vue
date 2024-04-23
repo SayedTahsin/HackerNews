@@ -27,12 +27,12 @@ let buttonText = computed(() => {
 </script>
 
 <template>
-  <div class="px-3 bg-gray-100 rounded-lg">
+  <div class="px-3 mb-1 bg-gray-100 dark:bg-gray-300 rounded-lg">
     <div class="text-black">
       <span class="cursor-pointer text-blue-700 font-bold" @click="router.push(`/user/${username}`)">{{ username }}</span>
       | {{ time }} | {{ numberOfComments }} comments
     </div>
-    <hr />
+    <hr/>
     <div>{{ text }}</div>
     <span class="text-black font-bold text-xs cursor-pointer" v-if="numberOfComments" @click="toggle">{{ buttonText }}</span>
     <div class="subcomment" v-if="numberOfComments && showReply">

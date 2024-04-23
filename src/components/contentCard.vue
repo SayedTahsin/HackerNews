@@ -17,8 +17,8 @@ const isJob = response.data.type === 'job'
 </script>
 
 <template>
-  <div class="mx-auto w-3/5 p-4 flex bg-gray-100 m-2 rounded-lg">
-    <div class="w-12 h-12 text-lg font-bold flex items-center justify-center border border-gray-200 rounded-lg text-orange-500">{{ score }}</div>
+  <div class="mx-auto w-3/5 p-4 flex bg-gray-100 dark:bg-gray-300 m-2 rounded-lg">
+    <div class="w-12 h-12 text-lg font-bold flex items-center justify-center border border-gray-200 dark:border-gray-400 rounded-lg text-orange-500 dark:text-black">{{ score }}</div>
     <div class="pl-5 ml-5">
       <div class="text-lg">
         <a class="text-black font-bold hover:text-black hover:underline" :href="response.data.url" target="_blank">{{ title }}</a>

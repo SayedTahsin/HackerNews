@@ -55,9 +55,9 @@ watchEffect(() => {
     </Suspense>
   </template>
 
-  <div class="mx-auto w-full text-center px-4 py-2">
-    <button :disabled="currentPage == 1" @click="prevPage" class="text-black text-lg px-4 cursor-pointer">&lt</button>
+  <div class="mx-auto text-black dark:text-white w-full text-center font-bold px-4 py-2">
+    <button :disabled="currentPage == 1" @click="prevPage" class=" text-lg px-4 cursor-pointer">&lt</button>
     <span class="px-4 text-lg">{{ currentPage }} / {{ totalPages }}</span>
-    <button :disabled="currentPage == totalPages" @click="nextPage" class="text-black text-lg px-4 cursor-pointer">&gt</button>
+    <button :disabled="currentPage == totalPages" @click="nextPage" class=" text-lg px-4 cursor-pointer">&gt</button>
   </div>
 </template>

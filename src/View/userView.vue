@@ -19,13 +19,13 @@ const about = response.data.about
 <template>
   <Suspense>
     <template #default>
-      <div class="text-black mx-auto w-3/5 bg-white p-5 text-lg">
+      <div class="text-black dark:text-white mx-auto w-3/5 bg-white dark:bg-gray-600 p-5 text-lg rounded-lg mt-10">
         <p>Username : {{ username }}</p>
         <p>Karma: {{ karma }}</p>
         <p>Created: {{ time }}</p>
         <p>
           About:
-        <div class="border border-black border-opacity-25 p-4">{{ about }}</div>
+        <div class="border border-black dark:border-white border-opacity-25 p-4">{{ about }}</div>
         </p>
       </div>
     </template>
