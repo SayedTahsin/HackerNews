@@ -68,7 +68,7 @@ function toggleMenu() {
           </svg>
         </button>
         <ul v-if="isMenuOpen"
-          class="absolute top-full right-0 mt-2 py-1 w-36 dark:bg-gray-900 bg-white text-black dark:text-white shadow-lg rounded-md overflow-hidden list-none">
+          class="absolute top-full right-0 mt-2 py-1 w-36 bg-opacity-90 dark:bg-opacity-90 dark:bg-gray-900 bg-white text-black dark:text-white shadow-lg rounded-md overflow-hidden list-none">
           <RouterLink v-for="route in routes" class="no-underline" active-class="font-bold underline" :to="route.to">
             <li class="text-right px-2">{{ route.title }}</li>
             <hr>

@@ -25,7 +25,7 @@ const about = response.data.about
         <p>Created: {{ time }}</p>
         <p>
           About:
-        <div class="border border-black dark:border-white border-opacity-25 p-2 lg:p-4">{{ about }}</div>
+        <div class="border border-black dark:border-white border-opacity-25 p-2 lg:p-4 overflow-auto">{{ about }}</div>
         </p>
       </div>
     </template>

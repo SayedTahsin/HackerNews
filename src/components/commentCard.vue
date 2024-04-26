@@ -33,7 +33,7 @@ let buttonText = computed(() => {
       | {{ time }} | {{ numberOfComments }} comments
     </div>
     <hr class="border-t-1 border-black"/>
-    <div class="text-sm">{{ text }}</div>
+    <div class="text-sm overflow-auto">{{ text }}</div>
     <span class="text-black font-bold text-xs cursor-pointer" v-if="numberOfComments" @click="toggle">{{ buttonText }}</span>
     <div v-if="numberOfComments && showReply">
       <template v-for="id in comments">
