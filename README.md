@@ -1,29 +1,22 @@
 # HackerNews
 
-This template should help get you started developing with Vue 3 in Vite.
+Build with vue3 and TailwindCSS
 
-## Recommended IDE Setup
+<img src="./src/assets/preview/home.png">
+<img src="./src/assets/preview/home-dark.png">
+<img src="./src/assets/preview/comment.png">
+<div >
+<img src="./src/assets/preview/home-sm.png" style="display: inline-block; vertical-align: top;  height: 600px;">
+<img src="./src/assets/preview/comment-sm.png" style="display: inline-block; vertical-align: top;height: 600px;">
+</div>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+<div style="display: flex; justify-content: center; align-items: center;"><a href="https://hacker-news-gold-tau.vercel.app/"><h2>LIVE</h2></a></div>
 
-## Customize configuration
+## Features
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+- Client Side Rendering
+- Vite-based hot module replacement (HMR) dev environment
+- Content loader
+- Lazy load comment
+- Dark Mode
+- Mobile Responsive
