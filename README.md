@@ -10,7 +10,7 @@ Build with vue3 and TailwindCSS
 <img src="./src/assets/preview/comment-sm.png" style="display: inline-block; vertical-align: top;height: 600px;">
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center;"><a href="https://hacker-news-gold-tau.vercel.app/"><h2>LIVE</h2></a></div>
+[Hosted on Vercel](https://hacker-news-gold-tau.vercel.app/)
 
 ## Features
 
