@@ -1,5 +1,5 @@
 <script setup>
-import fallbackLoadingUser from "@/components/fallbackLoadingUser.vue";
+import fallbackLoadingUser from "@/components/loader/FallbackLoadingUser.vue";
 import { useAxios } from "@/composables/axios";
 import { dhm } from "@/utils/commonFunction";
 import { useRoute } from "vue-router";

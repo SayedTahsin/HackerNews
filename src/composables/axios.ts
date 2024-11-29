@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const useAxios = (url) => {
+const useAxios = (url: string) => {
   const Axios = axios.create({
     baseURL: 'https://hacker-news.firebaseio.com/v0/',
     method: 'get'

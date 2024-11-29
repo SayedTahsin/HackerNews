@@ -1,6 +1,6 @@
 <script setup>
-import ContentCard from '@/components/contentCard.vue'
-import FallbackLoading from '@/components/fallbackLoading.vue'
+import ContentCard from '@/components/ContentCard.vue'
+import FallbackLoading from '@/components/loader/FallbackLoading.vue'
 import { useAxios } from '@/composables/axios'
 import { computed, ref, watchEffect } from 'vue'
 
@@ -55,9 +55,9 @@ watchEffect(() => {
     </Suspense>
   </template>
 
-  <div class="mx-auto text-black dark:text-white w-full text-center text-md lg:text-lg lg:font-bold  px-4 py-2">
-    <button :disabled="currentPage == 1" @click="prevPage" class="  px-4 cursor-pointer">&lt</button>
+  <div class="mx-auto text-black dark:text-white w-full text-center text-md lg:text-lg lg:font-bold px-4 py-2">
+    <button :disabled="currentPage == 1" @click="prevPage" class="px-4 cursor-pointer">&lt</button>
     <span class="px-4">{{ currentPage }} / {{ totalPages }}</span>
-    <button :disabled="currentPage == totalPages" @click="nextPage" class=" px-4 cursor-pointer">&gt</button>
+    <button :disabled="currentPage == totalPages" @click="nextPage" class="px-4 cursor-pointer">&gt</button>
   </div>
 </template>
