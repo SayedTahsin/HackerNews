@@ -1,28 +1,49 @@
 <script setup>
-import FallbackLoadingComment from './fallbackLoadingComment.vue'
+import { onMounted, computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useAxios } from '@/composables/axios'
 import { dhm } from '@/utils/commonFunction'
-import { computed, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import FallbackLoadingComment from './loader/FallbackLoadingComment.vue'
 
 const router = useRouter()
 const props = defineProps(['id'])
 
-const response = await useAxios(`item/${props.id}.json`)
-let showReply = ref(false)
+const responseObject = ref({})
+const showReply = ref(false)
+
+const time = computed(() => {
+  return dhm(responseObject.value.time)
+})
+const username = computed(() => {
+  return responseObject.value.by
+})
+const text = computed(() => {
+  return responseObject.value.text
+})
+const comments = computed(() => {
+  return responseObject.value.kids || []
+})
+const numberOfComments = computed(() => {
+  return responseObject.value.kids ? responseObject.value.kids.length : 0
+})
+
 const toggle = () => {
   showReply.value = !showReply.value
 }
-
-const time = dhm(response.data.time)
-const username = response.data.by
-const text = response.data.text
-
-let comments = response.data.kids ? response.data.kids : []
-let numberOfComments = response.data.kids ? response.data.kids.length : 0
-
-let buttonText = computed(() => {
+const buttonText = computed(() => {
   return showReply.value === false ? 'Show reply ' + numberOfComments + ' [+]' : 'Hide reply ' + '[-]'
+})
+const getComment = async () => {
+  try {
+    const response = await useAxios(`item/${props.id}.json`)
+    responseObject.value = response.data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+onMounted(() => {
+  getComment()
 })
 </script>
 
@@ -32,14 +53,14 @@ let buttonText = computed(() => {
       <span class="cursor-pointer text-blue-700 font-bold" @click="router.push(`/user/${username}`)">{{ username }}</span>
       | {{ time }} | {{ numberOfComments }} comments
     </div>
-    <hr class="border-t-1 border-black"/>
+    <hr class="border-t-1 border-black" />
     <div class="text-sm overflow-auto">{{ text }}</div>
     <span class="text-black font-bold text-xs cursor-pointer" v-if="numberOfComments" @click="toggle">{{ buttonText }}</span>
     <div v-if="numberOfComments && showReply">
       <template v-for="id in comments">
         <Suspense>
           <template #default>
-            <commentCard :id="id" />
+            <CommentCard :id="id" />
           </template>
           <template #fallback>
             <FallbackLoadingComment />

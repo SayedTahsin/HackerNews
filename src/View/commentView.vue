@@ -1,8 +1,8 @@
 <script setup>
-import CommentCard from '@/components/commentCard.vue'
-import ContentCard from '@/components/contentCard.vue'
-import FallbackLoading from '@/components/fallbackLoading.vue'
-import FallbackLoadingComment from '@/components/fallbackLoadingComment.vue'
+import CommentCard from '@/components/CommentCard.vue'
+import ContentCard from '@/components/ContentCard.vue'
+import FallbackLoading from '@/components/loader/FallbackLoading.vue'
+import FallbackLoadingComment from '@/components/loader/FallbackLoadingComment.vue'
 import { useAxios } from '@/composables/axios'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
