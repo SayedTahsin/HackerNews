@@ -9,14 +9,7 @@ import { RouterView } from 'vue-router'
   <div class="flex flex-col min-h-screen">
     <Navbar class="sticky top-0 z-50" />
     <div class="flex-grow bg-gray-300 dark:bg-gray-800">
-      <Suspense>
-        <template #default>
-          <RouterView />
-        </template>
-        <template #fallback>
-          <FallbackLoading />
-        </template>
-      </Suspense>
+      <RouterView />
     </div>
     <Footer class="mt-auto" />
   </div>

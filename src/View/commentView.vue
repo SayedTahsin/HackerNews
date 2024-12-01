@@ -11,33 +11,27 @@ const route = useRoute()
 const id = route.params.id
 
 let commentIds = ref([])
+const isLoading = ref(false)
 
 const fetchData = async () => {
+  isLoading.value = true
   try {
     const response = await useAxios(`item/${id}.json`)
     commentIds.value = response.data.kids
   } catch (error) {
     console.error('Error fetching data:', error)
   }
+  isLoading.value = false
 }
 fetchData()
 </script>
+
 <template>
-  <Suspense>
-    <template #default>
-      <ContentCard :id="id" />
-    </template>
-    <template #fallback><FallbackLoading /></template>
-  </Suspense>
+  <ContentCard :id="id" />
   <br />
   <div class="mx-auto max-w-5xl">
-    <template v-for="id in commentIds">
-      <Suspense>
-        <template #default>
-          <CommentCard :id="id" />
-        </template>
-        <template #fallback> <FallbackLoadingComment /></template>
-      </Suspense>
-    </template>
+    <div v-for="id in commentIds">
+      <CommentCard :id="id" />
+    </div>
   </div>
 </template>
