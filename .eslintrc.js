@@ -1,10 +1,9 @@
 module.exports = {
-  env: {
-    node: true
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module'
   },
-  extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'prettier'],
-  rules: {
-    // override/add rules settings here, such as:
-    // 'vue/no-unused-vars': 'error'
-  }
+  plugins: ['@typescript-eslint'],
+  extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended']
 }

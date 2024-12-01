@@ -47,7 +47,6 @@ watchEffect(() => {
   currentPage.value = 1
   fetchData()
 })
-
 </script>
 
 <template>
