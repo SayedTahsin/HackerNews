@@ -1,8 +1,8 @@
 <script setup>
-import FallbackLoading from '@/components/loader/FallbackLoading.vue'
+import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
+import { RouterView } from 'vue-router'
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
-import { RouterView } from 'vue-router'
 </script>
 
 <template>
@@ -13,4 +13,5 @@ import { RouterView } from 'vue-router'
     </div>
     <Footer class="mt-auto" />
   </div>
+  <VueQueryDevtools />
 </template>

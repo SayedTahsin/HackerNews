@@ -1,29 +1,29 @@
 <script setup>
+import { useAxios } from '@/composables/axios'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useQuery } from '@tanstack/vue-query'
 import CommentCard from '@/components/CommentCard.vue'
 import ContentCard from '@/components/ContentCard.vue'
-import FallbackLoading from '@/components/loader/FallbackLoading.vue'
-import FallbackLoadingComment from '@/components/loader/FallbackLoadingComment.vue'
-import { useAxios } from '@/composables/axios'
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const id = route.params.id
 
-let commentIds = ref([])
-const isLoading = ref(false)
-
+let commentIds = computed(() => {
+  return data.value
+})
 const fetchData = async () => {
-  isLoading.value = true
-  try {
-    const response = await useAxios(`item/${id}.json`)
-    commentIds.value = response.data.kids
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-  isLoading.value = false
+  const response = await useAxios(`item/${id}.json`)
+  return response.data?.kids
 }
-fetchData()
+
+const { data } = useQuery({
+  queryKey: ['commentView', id],
+  queryFn: fetchData,
+  staleTime: 5 * 60 * 1000,
+  cacheTime: 30 * 60 * 1000,
+  refetchOnWindowFocus: false
+})
 </script>
 
 <template>
