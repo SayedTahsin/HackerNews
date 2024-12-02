@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watchEffect } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useAxios } from '@/composables/axios'
 import { useQuery } from '@tanstack/vue-query'
 import ContentCard from '@/components/ContentCard.vue'
@@ -35,7 +35,7 @@ const fetchData = async () => {
   return response.data
 }
 
-const { isLoading, isError, data, error } = useQuery({
+const { isLoading, isError, data, error, refetch } = useQuery({
   queryKey: ['stories', props.url],
   queryFn: fetchData,
   staleTime: 5 * 60 * 1000,
@@ -43,9 +43,9 @@ const { isLoading, isError, data, error } = useQuery({
   refetchOnWindowFocus: false
 })
 
-watchEffect(() => {
+watch(() => props.url, () => {
   currentPage.value = 1
-  fetchData()
+  refetch()
 })
 </script>
 
