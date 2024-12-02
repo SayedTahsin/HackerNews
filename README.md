@@ -1,6 +1,6 @@
 # HackerNews
 
-Build with vue3 and TailwindCSS
+### Build with vue3 and TailwindCSS. Used TanStack Query for caching api responses.
 
 <img src="./src/assets/preview/home.png">
 <img src="./src/assets/preview/home-dark.png">
