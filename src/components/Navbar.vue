@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
 import { RouterLink } from 'vue-router'
 import DarkModeIcon from './icons/DarkModeIcon.vue'
@@ -9,39 +9,38 @@ import HamburgerIcon from './icons/HamburgerIcon.vue'
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 const isMenuOpen = ref(false)
+const menuRef = ref(null)
+
 const routes = [
-  {
-    title: 'New',
-    to: '/new'
-  },
-  {
-    title: 'Best',
-    to: '/best'
-  },
-  {
-    title: 'Show',
-    to: '/show'
-  },
-
-  {
-    title: 'Ask',
-    to: '/ask'
-  },
-
-  {
-    title: 'Jobs',
-    to: '/jobs'
-  }
+  { title: 'New', to: '/new' },
+  { title: 'Best', to: '/best' },
+  { title: 'Show', to: '/show' },
+  { title: 'Ask', to: '/ask' },
+  { title: 'Jobs', to: '/jobs' }
 ]
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value
 }
+
+function handleClickOutside(event) {
+  if (menuRef.value && !menuRef.value.contains(event.target)) {
+    isMenuOpen.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
 </script>
 
 <template>
   <div class="h-16 bg-orange-700 dark:bg-black flex justify-between items-center text-white px-2 md:px-96">
-    <RouterLink class="no-underline font-bold text-xl" active-class="font-bold text-3xl" to="/"><span>HackerNews</span> </RouterLink>
+    <RouterLink class="no-underline font-bold text-xl" active-class="font-bold text-3xl" to="/"><span>HackerNews</span></RouterLink>
     <div class="flex justify-between space-x-4">
       <button class="hover:scale-110 transition-all ease-out hover:cursor-pointer" @click="toggleDark()">
         <DarkModeIcon v-if="isDark" />
@@ -50,7 +49,7 @@ function toggleMenu() {
 
       <!-- This div is for hamburger menu in mobile device -->
       <div class="sm:hidden relative">
-        <button class="focus:outline-none text-white pt-2" @click="toggleMenu()">
+        <button ref="menuRef" class="focus:outline-none text-white pt-2" @click="toggleMenu()">
           <HamburgerIcon />
         </button>
         <ul
