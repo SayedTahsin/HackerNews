@@ -15,6 +15,7 @@
 ## Features
 
 - Client Side Rendering
+- Tanstack Query caching
 - Vite-based hot module replacement (HMR) dev environment
 - Content loader
 - Lazy load comment
